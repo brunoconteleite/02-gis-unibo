@@ -1,0 +1,82 @@
+---
+title: "Spatial Data in Economics:"
+subtitle: "Theory and Tools (a.k.a. GIS Tools Lab.)"
+author: "Bruno Conte"
+institute: "Università di Bologna"
+date: "14/Feb/2023"
+# date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    # css: xaringan-themer2.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+# library(xaringanthemer)
+# # style_mono_accent(
+# #   base_color = "#1c5253"
+# #   # header_font_google = google_font("Josefin Sans"),
+# #   # text_font_google   = google_font("Montserrat", "300", "300i"),
+# #   # code_font_google   = google_font("Fira Mono")
+# # )
+# # style_xaringan(link_color = 'red')
+# style_xaringan(
+#   text_font_family = "Droid Serif",
+#   text_font_url = "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic",
+#   header_font_google = google_font("Yanone Kaffeesatz")
+# )
+```
+
+class: center, middle
+
+# xaringan
+
+### /ʃaː.'riŋ.ɡan/
+
+???
+
+Lalala
+
+---
+class: inverse, center, middle
+
+# Get Started
+
+---
+
+# Hello World
+
+Install the **xaringan** package from [Github](https://github.com/yihui/xaringan):
+
+```{r eval=FALSE, tidy=FALSE}
+remotes::install_github("yihui/xaringan")
+```
+
+--
+
+You are recommended to use the [RStudio IDE](https://www.rstudio.com/products/rstudio/), but you do not have to.
+
+- Create a new R Markdown document from the menu `File -> New File -> R Markdown -> From Template -> Ninja Presentation`;<sup>1</sup>
+
+--
+
+- Click the `Knit` button to compile it;
+
+--
+
+- or use the [RStudio Addin](https://rstudio.github.io/rstudioaddins/)<sup>2</sup> "Infinite Moon Reader" to live preview the slides (every time you update and save the Rmd document, the slides will be automatically reloaded in RStudio Viewer.
+
+.footnote[
+[1] 中文用户请看[这份教程](https://slides.yihui.org/xaringan/zh-CN.html)
+
+[2] See [#2](https://github.com/yihui/xaringan/issues/2) if you do not see the template or addin in RStudio.
+]
+
+

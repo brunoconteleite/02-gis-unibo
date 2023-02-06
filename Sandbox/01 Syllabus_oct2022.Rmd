@@ -1,0 +1,75 @@
+---
+title: "Spatial Data in Economics: Theory and Tools"
+author: "Bruno Conte"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    number_sections: true
+# output:
+#   pdf_document:
+#     latex_engine: xelatex
+#     number_sections: true
+---
+
+<!-- # On the Geographical Implication of Carbon Taxes - Replication package -->
+
+<!-- Authors: Bruno Conte, Klaus Desmet, and Esteban Rossi Hansberg -->
+
+<!-- 2022-10-12 -->
+
+# Overview
+
+This is a master/Ph.D. course on basic theory and tools for using spatial data in economic research. All practical applications are taking place in ``R`` and ``RStudio``. Please have both installed in your computer before starting the course.
+
+## Course structure
+
+This is a 15 hours course, divided in six sessions of 2 hours plus two office hours' sessions for technical follow-ups (one at the half of the course and another before the last class). The overall structure follows (a full syllabus will be provided a few weeks before the course starts).
+
+* **Session 1:** Introduction to spatial data and data wrangling in R.
+  * Basic aspects of spatial data and application illustrations from economic literature. Covers ``R`` basics: ``data.table``, ``tidyverse``, ``ggplot2``.
+
+* **Session 2:** Vector spatial data (points, lines, and polygons).
+  * Loading and manipulating with ``sf``. Basic principles of spatial (re)projections. Basic attribute data operations (e.g. ``filter()``, ``slice()``) with ``data.table`` and data  visualization with ``ggplot2``.
+  * *Assignment:* replicating maps spatial summary statistics from academic papers.
+
+* **Session 3:** Spatial data operations with vector data
+  * Spatial Subsetting and topological relations (e.g. ``st_intersects()``, ``st_overlaps()``, ``st_touches()``), spatial joining and aggregation (e.g. ``st_join()``, ``aggregate()``), and calculating distances (and spatial networks) with ``gdistance``, ``rgeos``, and ``igraph``.
+  * *Assignment:* reproducing operations with proposed data and replicating results from academic papers.
+  
+* **Session 4:** Spatial geometry operations and miscelania
+  * Basic operations with vector data (e.g. centroids, shift, rotate, buffering).
+  * Reporting data work with `R`: a short introduction to `rmarkdown`.
+  * *Class follow-up:* feedback on course pace, reinforcing concepts, etc.
+
+* **Session 5:** Raster data
+  * Loading and manipulating raster data with ``terra``. Basic raster operations (e.g. ``resample``, ``stack``, ``brick``, ``crop``).
+  * Managing curse of dimensionality and large disk and memory needs for dealing with raster data.
+  * Raster-vector operations with ``terra`` and ``exactextractr`` (e.g. extracting, rasterizing, vectorizing, zonal statistics).
+  * *Assignment:* replication of results and spatial statistics from academic papers.
+
+* **Session 6:** Internet-based spatial data and conclusion
+  * Introduction to retrieving spatial data from the web. Covers web-queries through API systems, basic web scrapping for GIS data (with ``httr``, ``xml``, ``rjson``), and normal challenges to big-data extraction.
+  * *Conclusion:* follow-up on important concepts and (potentially) holding short presentations of research projects.
+
+# References
+
+* Donaldson, D. and Storeygard, A., 2016. The view from above: Applications of satellite data in economics. *Journal of Economic Perspectives*, *30(4)*, pp.171-98.
+
+* Lovelace, R., Nowosad, J. and Muenchow, J., 2019. Geocomputation with R. Chapman and Hall/CRC.
+
+* Pebesma, E., 2018. Simple Features for R: Standardized Support for Spatial Vector Data. *The R Journal*, *10 (1)*, 439-446, https://doi.org/10.32614/RJ-2018-009
+
+* Wickham, H. and Grolemund, G., 2016. R for data science: import, tidy, transform, visualize, and model data. " O'Reilly Media, Inc.".
+
+<!-- # Potential papers (to be updated) -->
+
+<!-- * Conte, B., Desmet, K., Nagy, D.K. and Rossi-Hansberg, E., 2021. Local sectoral specialization in a warming world. *Journal of Economic Geography*, *21(4)*, pp.493-530. -->
+
+<!-- * Dell, M., 2010. The persistent effects of Peru's mining mita. *Econometrica*, *78(6)*, pp.1863-1903. -->
+
+<!-- * Henderson, J.V., Storeygard, A. and Weil, D.N., 2012. Measuring economic growth from outer space. *American economic review*, *102(2)*, pp.994-1028. -->
+
+<!-- * Marending, M. and Tripodi, S., 2021. Gone with the wind: the welfare effect of desert locust outbreaks. Available at SSRN 3989095. -->
+
+<!-- * Michalopoulos, S., Naghavi, A. and Prarolo, G., 2018. Trade and Geography in the Spread of Islam. *The Economic Journal*, *128(616)*, pp.3210-3241. -->
+

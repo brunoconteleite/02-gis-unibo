@@ -1,0 +1,30 @@
+88353 - GIS TOOLS LABORATORY
+ANNO ACCADEMICO 2022/2023
+
+Contenuti
+
+This course provides theory and tools to use geographical data in economic research. First, it (i) presents recent economic research that utilizes this type of data and (ii) stresses how doing so allows for addressing meaningful research questions. Second, the course introduces the technicalities related to the construction and use of geographic data using R.
+
+Testi/Bibliografia
+
+A bibliography of the academic literature will be distributed in class. The technical references for using R to handle GIS data will comprise both the slides and codes provided by the instructor and
+
+- Wickham, H. and Grolemund, G., 2016. R for data science: import, tidy, transform, visualize, and model data. " O'Reilly Media, Inc.".
+
+- Pebesma, E., 2018. Simple Features for R: Standardized Support for Spatial Vector Data. The R Journal 10 (1), 439-446, https://doi.org/10.32614/RJ-2018-009
+
+Metodi didattici
+
+Classes with discussions and papers and methods, and laboratory-like sessions in class. Participants are asked to have bring own laptop (or at least one every two people) to follow and replicate the work done by the instructor.
+
+Modalità di verifica e valutazione dell'apprendimento
+
+Class involvement, replication assignments, and a final project. The performance on these tasks will be used for the fail/pass decision.
+
+Strumenti a supporto della didattica
+
+Slides and R codes.
+
+Orario di ricevimento
+
+Fridays 8:00 to 9:00 am.

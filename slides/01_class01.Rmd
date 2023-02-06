@@ -1,0 +1,184 @@
+---
+title: "Lecture 01: Spatial Data"
+subtitle: "Theory and Tools (a.k.a. GIS Tools Lab.)"
+author: "Bruno Conte"
+institute: "Università di Bologna"
+date: "14/Feb/2023"
+# date: "2016/12/12 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+    seal: false
+    
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+# library(xaringanthemer)
+# # style_mono_accent(
+# #   base_color = "#1c5253"
+# #   # header_font_google = google_font("Josefin Sans"),
+# #   # text_font_google   = google_font("Montserrat", "300", "300i"),
+# #   # code_font_google   = google_font("Fira Mono")
+# # )
+# # style_xaringan(link_color = 'red')
+# style_xaringan(
+#   text_font_family = "Droid Serif",
+#   text_font_url = "https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic",
+#   header_font_google = google_font("Yanone Kaffeesatz")
+# )
+# other colors:
+# blue: rgb(0,114,178)
+# orange: rgb(213,94,0)
+# green: rgb(0,158,115)
+```
+
+class: middle
+
+# Lecture 01
+##Spatial Data in Economics: Theories and Tools (a.k.a. GIS Tools Laboratory)
+--- 
+
+**Bruno Conte**<br>
+LMEC - Università di Bologna
+
+---
+
+# Spatial data in economics: this course
+
+- Introduce students to conceptual and practical aspects of <span style="color: rgb(0,114,178)">**spatial data**</span></br>
+    - What is spatial (geographical) data?
+    - How is it used in <span style="color: rgb(0,114,178)">**research in economics**</span>?
+    - Which tools (i.e. computer systems/languages) do we need to work with it?
+    
+- Main goal: <span style="color: rgb(213,94,0)">concepts + tools</span> = practice with real-world data
+    - Concepts: types and formats of spatial data
+    - Tools: programming in ``R`` and ``RStudio``
+    
+- Course's **main philosophy**: a couse by an economist working with spatial data
+    - Rather than a course by a spatial data's specialist!
+
+---
+
+# Spatial data in economics: schedule
+
+1. Introduction to (spatial) data and programming in `R` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [14.Feb.2023]
+    - Data types and examples in economics
+    - Basic `R` programming: set up and practice
+
+2. Spatial data basics: vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [21.Feb.2023]
+
+3. Basic operations with vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [28.Feb.2023]
+
+4. Geometry operations and miscelanea <span style="color: rgb(213,94,0)">+ follow-up</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [07.Mar.2023]
+
+5. Raster data and operations <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [14.Mar.2023]<br> <br>
+
+6. <span style="color: rgb(0,158,115)">Take-home exam</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [12.Apr.2023]
+
+---
+
+# Spatial data in economics: evaluation
+
+1. Class participation (10%)
+
+2. Practical assignments (3 x 10%, in teams)
+
+3. Take-home exam (60%, `pdf` by email):
+  - Research idea: spatial data + economics = research question
+  - Replication of tasks: data + tools = empirical motivation
+
+- Any <span style="color: rgb(213,94,0)">questions</span>?
+
+---
+
+# Spatial data in economics: logistics
+
+- Classes: every Tue from 17(:15)-20:00 pm
+    - 1 hour theory + 15' break + 1 hour practice
+
+- Course material: [webpage](https://brunoconteleite.github.io/about/Spatial-2022-23-Syllabus.html)
+
+- Office hours: by appointment (write me an email!)
+    
+- Potentially mixed backgroud: **be patient**!
+
+## Hands-in sessions:
+
+- Your own computer + `RStudio`:
+  - We will set it up together!
+
+- Any <span style="color: rgb(213,94,0)">questions</span>?
+
+---
+class: inverse, center, middle
+
+# Getting started: what is Spatial Data?
+
+---
+background-image: url(https://www.edmaps.com/europe_1789_excelsior_d.jpg)
+background-size: cover
+class: center, bottom, inverse
+# Europe in 1789 (before the French Revolution)
+
+---
+background-image: url(https://www.edmaps.com/europe_1812_excelsior_d.jpg)
+background-size: cover
+class: center, bottom, inverse
+# Europe in 1812 (before the French Invasion of Russia)
+
+---
+background-image: url(https://www.edmaps.com/europe_1815_excelsior_d.jpg)
+background-size: cover
+class: center, bottom, inverse
+# Europe in 1815 (after the Congress of Vienna)
+
+---
+background-image: url(https://hsat.space/wp-content/uploads/2020/08/brazil_planet_-6.35-53.55-768x512-1.jpg)
+background-size: cover
+class: center, bottom, inverse
+# Satellite picture of fires (and deforestation) in the Brazilian Amazon
+
+???
+Source: https://hsat.space/satellites-deforestation/
+
+---
+background-image: url(https://maaproject.org/wp-content/uploads/2021/01/maaproject.org-maap-132-amazon-deforestation-hotspots-2020-HS2-PFL-Amz-Biog2020-GLAD-Confirm-2-5-10-v3-Eng.jpg)
+background-size: contain
+class: center, top, inverse
+# Deforestation in the Brazilian Amazon
+
+???
+Source: https://maaproject.org/2021/amazon-hotspots-2020/
+
+---
+background-image: url(https://www.researchgate.net/publication/343842128/figure/fig1/AS:928229292511232@1598318517654/A-comparison-of-the-inter-and-intra-urban-variability-of-slums-Image-a-shows-a-typical.ppm)
+background-size: contain
+class: center, bottom, inverse
+# Urban slums in India
+
+???
+Source: https://www.researchgate.net/figure/A-comparison-of-the-inter-and-intra-urban-variability-of-slums-Image-a-shows-a-typical_fig1_343842128
+
+---
+
+# What is Spatial Data?
+
+- Data/information that has a <span style="color: rgb(213,94,0)">geographical attribute</span>
+  - Much more than coordinates on a standard dataset
+  
+  - Area size, distances, height, overlaying, intersections, ...
+
+- Clear
+
+- Data
+
+
+
