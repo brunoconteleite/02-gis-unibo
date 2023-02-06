@@ -176,7 +176,7 @@ Source: https://www.researchgate.net/figure/A-comparison-of-the-inter-and-intra-
   
   - Area size, distances, height, overlaying, intersections, ...
 
-- Clear
+- Common aspect: 
 
 - Data
 
