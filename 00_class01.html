@@ -9,20 +9,28 @@
   </head>
   <body>
     <textarea id="source">
+class: center, middle, inverse, title-slide
 
-
-
-
-class: middle
-
-# Lecture 01
-##Spatial Data in Economics: Theories and Tools (a.k.a. GIS Tools Laboratory)
---- 
-
-**Bruno Conte**&lt;br&gt;
-LMEC - Università di Bologna
+.title[
+# Lecture 01: Spatial Data
+]
+.subtitle[
+## Theory and Tools (a.k.a. GIS Tools Lab.)
+]
+.author[
+### Bruno Conte
+]
+.institute[
+### Università di Bologna
+]
+.date[
+### 14/Feb/2023
+]
 
 ---
+
+
+
 
 # Spatial data in economics: this course
 
@@ -35,15 +43,59 @@ LMEC - Università di Bologna
     - Concepts: types and formats of spatial data
     - Tools: programming in ``R`` and ``RStudio``
     
-- Course's **main philosophy**: a couse by an economist working with spatial data
+- Course's **main philosophy**: a course by an &lt;span style="color: rgb(0,158,115)"&gt;economist working with spatial data&lt;/span&gt;
     - Rather than a course by a spatial data's specialist!
+    
+---
+
+# Spatial data in economics: this course
+
+This course is about how we, (in principle) **economists**, can use spatial data to empirically answer &lt;span style="color: rgb(213,94,0)"&gt;reserch questions of our interest&lt;/span&gt;.
+
+.pull-left[
+**You will learn**
+- What is spatial data and its applications in economic research
+
+- Basic `R` programming
+
+- Most common spatial data operations
+
+- Introductory (spatial) data visualization
+]
+
+.pull-right[
+**You will not learn**
+- All state-of-art GIS tools available in `R`
+
+- To write an efficient `R` code&lt;sup&gt;*&lt;/sup&gt;
+
+- To handle big data&lt;sup&gt;*&lt;/sup&gt;
+
+- To solve every possible problem
+]
+
+.footnote[
+[*] This is up to you.
+]
+
+---
+
+# Spatial data in economics: this course
+
+## Good references
+
+1. Lovelace, R., Nowosad, J. and Muenchow, J., 2019. Geocomputation with R. Chapman and Hall/CRC.
+
+2. Pebesma, E., 2018. Simple Features for R: Standardized Support for Spatial Vector Data. The R Journal 10 (1), 439-446, https://doi.org/10.32614/RJ-2018-009
+
+3. Wickham, H. and Grolemund, G., 2016. R for data science: import, tidy, transform, visualize, and model data. " O'Reilly Media, Inc.".
 
 ---
 
 # Spatial data in economics: schedule
 
 1. Introduction to (spatial) data and programming in `R` &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [14.Feb.2023]
-    - Data types and examples in economics
+    - Introduction to spatial data and examples in economics
     - Basic `R` programming: set up and practice
 
 2. Spatial data basics: vector data &lt;span style="color: rgb(0,114,178)"&gt;+ assignment&lt;/span&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; [21.Feb.2023]
@@ -64,8 +116,9 @@ LMEC - Università di Bologna
 
 2. Practical assignments (3 x 10%, in teams)
 
-3. Take-home exam (60%, `pdf` by email):
-  - Research idea: spatial data + economics = research question
+3. &lt;span style="color: rgb(0,158,115)"&gt;Take-home exam&lt;/span&gt; (60%, `pdf` by email):
+  - Research idea: spatial data + economics = **research question**
+  
   - Replication of tasks: data + tools = empirical motivation
 
 - Any &lt;span style="color: rgb(213,94,0)"&gt;questions&lt;/span&gt;?
@@ -75,9 +128,9 @@ LMEC - Università di Bologna
 # Spatial data in economics: logistics
 
 - Classes: every Tue from 17(:15)-20:00 pm
-    - 1 hour theory + 15' break + 1 hour practice
+    - 1 hour theory + 15' break + 1 hour practice (hands-in)
 
-- Course material: [webpage](https://brunoconteleite.github.io/about/Spatial-2022-23-Syllabus.html)
+- Course material: &lt;u&gt;[webpage](https://brunoconteleite.github.io/about/Spatial-2022-23-Syllabus.html)&lt;/u&gt;
 
 - Office hours: by appointment (write me an email!)
     
@@ -92,6 +145,7 @@ LMEC - Università di Bologna
 
 ---
 class: inverse, center, middle
+count: false
 
 # Getting started: what is Spatial Data?
 
@@ -145,13 +199,346 @@ Source: https://www.researchgate.net/figure/A-comparison-of-the-inter-and-intra-
 # What is Spatial Data?
 
 - Data/information that has a &lt;span style="color: rgb(213,94,0)"&gt;geographical attribute&lt;/span&gt;
-  - Much more than coordinates on a standard dataset
+  - **Much more** than coordinates on a standard dataset
   
-  - Area size, distances, height, overlaying, intersections, ...
+  - Polygons, areas, distances, height, overlaying, intersections, ...
 
-- Common aspect: 
+--
 
-- Data
+.pull-left[
+- Common aspect: **&lt;span style="color: rgb(0,158,115)"&gt;unstructured data&lt;/span&gt;** (i.e. unconventional data format)
+
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;img src="https://previews.123rf.com/images/in8finity/in8finity1506/in8finity150600031/41436580-earth-globe-icons-set-.jpg" style="width: 40%" /&gt;
+]
+
+.pull-right[
+- Our goal: manipulate it into the **&lt;span style="color: rgb(0,114,178)"&gt;structure&lt;/span&gt;** required by research
+
+&lt;img src="https://cdn-icons-png.flaticon.com/512/6925/6925245.png" style="width: 40%" /&gt; &lt;img src="https://cdn-icons-png.flaticon.com/512/5198/5198977.png" style="width: 40%" /&gt;
+
+]
+
+---
+
+# What is GIS?
+
+- GIS = &lt;span style="color: rgb(0,114,178)"&gt;Geographic Information Systems&lt;/span&gt;
+    - (old) Systems used to manipulate/process spatial data (**1980's**)
+    
+    - 1990's: rise of user-friendly, **desktop softwares** (ArcGIS, QGIS)
+    
+    - &lt;span style="color: rgb(213,94,0)"&gt;Data Science revolution:&lt;/span&gt;  full integration of GIS tools into data-processing pipelines; i.e. computer routines that process (potentially spatial) data in &lt;span style="color: rgb(0,158,115)"&gt;modern languages&lt;/span&gt; (e.g. `R`)
+    
+- **Examples:**
+    - Firm processing purchases across branches
+      - Is revenue larger in branches *closer to public transportation?*
+      
+    - HR firm allocating seasonal workers across plants
+      - Choose workers based on residence (reduce commuting time)?
+
+---
+
+# Why not GIS in desktop, user-friendly, softwares?
+
+Require human interaction (e.g. clicking, moving files) to &lt;span style="color: rgb(0,114,178)"&gt;structure spatial data&lt;/span&gt;.
+
+.pull-left[
+.center[**GIS in 1980's:**
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/4/42/SYMAP_-_LAB-LOG_1980.png" style="width: 80%" /&gt;
+]
+]
+
+.pull-right[
+.center[**ArcGIS/QGIS:**]
+
+&lt;img src="https://i.imgur.com/nuSANEH.jpg" style="width: 120%" /&gt;
+]
+
+---
+class: inverse, center, middle
+count: false
+
+# How is Spatial Data used in Economics?
+
+---
+
+# Spatial Data in Economics
+
+- **Motivation:** research questions that requires structuring spatial data.
+  - Spatial data = unstructured
+  
+  - GIS tools: manipulating spatial data to the required structure
+  
+- &lt;span style="color: rgb(213,94,0)"&gt;Applications in economic research:&lt;/span&gt;
+  - Cholera in London (Snow, 1856)
+  
+  - Colonial institutions and development in Peru (Dell, 2010)
+  
+  - Railroads and welfare in India (Donaldson, 2018)
+  
+  - Climate change and urbanization in Africa (Henderson et al., 2017)
+
+---
+
+# Application 01: John Snow's Cholera Maps in Soho (London)
+
+
+.pull-left[
+.center[
+&lt;img src="https://www.researchgate.net/profile/Maaruf-Lawal/publication/333521032/figure/fig1/AS:764738510278658@1559339277494/John-Snow-map-of-cholera-death-in-London-Gilbert-EW-1958-There-are-three-important.png" style="width: 90%" /&gt;
+]
+]
+
+.pull-right[
+- **Cholera outbreak** in mid 19th century
+
+- Former theory: transmission by air
+
+- John Snow's hypothesis: &lt;span style="color: rgb(0,114,178)"&gt;germ-contaminated water&lt;/span&gt;
+  - Different rates between locations with different water suppliers
+  
+  - Higher rates for those &lt;span style="color: rgb(213,94,0)"&gt;supplied by (polluted) Thames River&lt;/span&gt;
+  
+- Snow's finding: revolution on public sanitation
+
+]
+
+---
+
+# Application 02: Long-term consequences of the Mita (colonial) system in Peru
+
+
+.pull-left[
+.center[
+&lt;img src="figs/mita01.png" style="width: 100%" /&gt;
+]
+]
+
+.pull-right[
+- Spanish empire required **forced labor** to work on silver mines (Potosí)
+
+- Workers from high lands (Mita regions): resistent to the harsh mine conditions
+
+- Mita boundaries: regions that &lt;span style="color: rgb(213,94,0)"&gt;provided more/less conscripts&lt;/span&gt; (discontinuously!)
+  
+- **Dell's findings:** long-lasting &lt;span style="color: rgb(0,158,115)"&gt;development differences&lt;/span&gt;
+  - &lt;span style="color: rgb(0,114,178)"&gt;Economic channels:&lt;/span&gt; land ownership inequality, less public services, ...
+
+]
+
+---
+count: false
+
+# Application 02: Long-term consequences of the Mita (colonial) system in Peru
+
+
+.pull-left[
+.center[
+&lt;img src="figs/mita02.png" style="width: 80%" /&gt;
+]
+]
+
+.pull-right[
+- Spanish empire required **forced labor** to work on silver mines (Potosí)
+
+- Workers from high lands (Mita regions): resistent to the harsh mine conditions
+
+- Mita boundaries: regions that &lt;span style="color: rgb(213,94,0)"&gt;provided more/less conscripts&lt;/span&gt; (discontinuously!)
+  
+- **Dell's findings:** long-lasting &lt;span style="color: rgb(0,158,115)"&gt;development differences&lt;/span&gt;
+  - &lt;span style="color: rgb(0,114,178)"&gt;Economic channels:&lt;/span&gt; land ownership inequality, less public services, ...
+
+]
+
+---
+
+# Application 03: Transportation integration and welfare in India
+
+
+.pull-left[
+.center[
+&lt;img src="figs/donaldson.png" style="width: 100%" /&gt;
+]
+]
+
+.pull-right[
+- Vast **expansion of railroad network** in British colonial India
+
+- Standard trade theory: &lt;span style="color: rgb(0,114,178)"&gt;welfare gains from market integration&lt;/span&gt;
+  - Lack of evidence within countries
+
+- **Donaldson's findings:** improved trade conditions increased welfare
+  - &lt;span style="color: rgb(0,158,115)"&gt;Integrated remote areas&lt;/span&gt; (reduced price gaps, more trade flows)
+  
+  - &lt;span style="color: rgb(213,94,0)"&gt;Welfare gains&lt;/span&gt; (real income) from intraregional trade
+
+ 
+
+]
+
+---
+
+# Application 04: Climate change and urbanization in Africa
+
+
+.pull-left[
+.center[
+&lt;img src="figs/henderson01.png" style="width: 100%" /&gt;
+]
+]
+
+.pull-right[
+- **Increased dryness in Africa** (worse conditions for agriculture)
+
+- Question: do agents in affected rural regions &lt;span style="color: rgb(0,114,178)"&gt;migrate to cities?&lt;/span&gt;
+
+- **Henderson et al.'s findings:** depends on &lt;span style="color: rgb(213,94,0)"&gt;industry composition of cities&lt;/span&gt;
+  - Increased size (**nightlights**) in manufacturing, exporting cities
+  
+  - Opposite evidence for market towns (service providers to agriculture)
+  
+  - Importance of &lt;span style="color: rgb(0,158,115)"&gt;structural change!&lt;/span&gt;
+]
+
+
+---
+count: false
+
+# Application 04: Climate change and urbanization in Africa
+
+
+.pull-left[
+.center[
+&lt;img src="figs/henderson02.png" style="width: 100%" /&gt;
+]
+]
+
+.pull-right[
+- **Increased dryness in Africa** (worse conditions for agriculture)
+
+- Question: do agents in affected rural regions &lt;span style="color: rgb(0,114,178)"&gt;migrate to cities?&lt;/span&gt;
+
+- **Henderson et al.'s findings:** depends on &lt;span style="color: rgb(213,94,0)"&gt;industry composition of cities&lt;/span&gt;
+  - Increased size (**nightlights**) in manufacturing, exporting cities
+  
+  - Opposite evidence for market towns (service providers to agriculture)
+  
+  - Importance of &lt;span style="color: rgb(0,158,115)"&gt;structural change!&lt;/span&gt;
+
+]
+
+---
+count: false
+
+# Application 04: Climate change and urbanization in Africa
+
+
+.pull-left[
+.center[
+&lt;img src="figs/henderson03.png" style="width: 100%" /&gt;
+]
+]
+
+.pull-right[
+- **Increased dryness in Africa** (worse conditions for agriculture)
+
+- Question: do agents in affected rural regions &lt;span style="color: rgb(0,114,178)"&gt;migrate to cities?&lt;/span&gt;
+
+- **Henderson et al.'s findings:** depends on &lt;span style="color: rgb(213,94,0)"&gt;industry composition of cities&lt;/span&gt;
+  - Increased size (**nightlights**) in manufacturing, exporting cities
+  
+  - Opposite evidence for market towns (service providers to agriculture)
+  
+  - Importance of &lt;span style="color: rgb(0,158,115)"&gt;structural change!&lt;/span&gt;
+
+]
+
+---
+class: inverse, center, middle
+count: false
+
+# How to work with spatial data in R?
+
+---
+
+# Working with data (including spatial) in R
+
+- What is `R`? 
+  - Computer language for statistical computing and graphics
+  
+  - Open source, &lt;span style="color: rgb(0,114,178)"&gt;free access&lt;/span&gt;
+  
+  - Developers' community (CRAN)
+      - Development of **libraries** (packages) for &lt;span style="color: rgb(213,94,0)"&gt;specific applications&lt;/span&gt;
+    
+- `RStudio`: integrated development environment (IDE)
+  - &lt;span style="color: rgb(0,158,115)"&gt;User-friendlier environment&lt;/span&gt; to work with `R`
+  
+---
+
+# Working with data (including spatial) in R
+
+- Data work in `R`: one of its &lt;span style="color: rgb(0,114,178)"&gt;many capabilities&lt;/span&gt;
+  - Producing documents, slides, or webpages
+  
+- **Our approach:**
+  1. &lt;span style="color: rgb(0,114,178)"&gt;Basic programming and data work&lt;/span&gt; in `R` `\(\rightarrow\)` **content of today!**
+  
+  2. Working with spatial data in `R` (GIS tools)
+  
+- Important: &lt;span style="color: rgb(213,94,0)"&gt;focus on basics&lt;/span&gt;
+  - Introduction of basic concepts/tools rather than a presentation of **all possible** functions
+  
+  - Every GIS application is a challenge on its own
+      - The goal is to introduce the basics so that you can apply (and improve) them on &lt;span style="color: rgb(0,158,115)"&gt;your own application!&lt;/span&gt;
+
+---
+class: inverse, center, middle
+count: false
+
+# R Basics
+
+---
+
+# Basics of programming and data work in R
+
+
+
+
+
+
+
+
+
+
+---
+count: false
+
+# References
+
+- Dell, M., 2010. The persistent effects of Peru's mining mita. *Econometrica*, *78(6)*, pp.1863-1903.
+
+- Donaldson, D., 2018. Railroads of the Raj: Estimating the impact of transportation infrastructure. *American Economic Review*, *108(4-5)*, pp.899-934.
+
+- Henderson, J.V., Storeygard, A. and Deichmann, U., 2017. Has climate change driven urbanization in Africa?. *Journal of development economics*, *124*, pp.60-82.
+
+- Snow, J., 1856. On the mode of communication of cholera. *Edinburgh medical journal*, *1(7)*, p.668.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
