@@ -511,13 +511,105 @@ count: false
 
 # Basics of programming and data work in R
 
+Open `01_class01.R` on your own computer, where we will cover the following topics. The subsequent slides here are for reference only.
 
+.pull-left[
+- **Concepts covered:**
+  1. `R` basics: environment, main elements (vectors, lists, `data.frame`), libraries
+  
+  2. Basic data wrangling with ``dplyr``
+      - Filtering, mutating, merging
+  
+  3. Data visualization with `ggplot2`
+]
 
+.pull-right[
+- **Setting up `R` (or in `RStudio`)**:
+```{r, results='hide', message=FALSE}
+# # Install packages (only first time)
+# install.packages('data.table') #<<
+# install.packages('tidyverse') #<<
 
+# Load them:
+library(data.table)
+library(dplyr)
+```
+Note: warning messages are OK!
 
+]
 
+---
 
+# Basics of programming and data work in R (1/3)
 
+- `R` is versatile working environment
+  - Can handle **different** elements (e.g. datasets, images, texts) contempotaneously
+  
+- Setting the **local** environment: working directory
+
+```{r}
+getwd() # tells you the current wd
+```
+
+- Types of elements in `R` environment:
+  - Vectors, `data.frame()`, `list()`, among (many) others
+  
+  - To check (or clean) current environment: `ls()` (or `rm()`)
+
+---
+
+# Basics of programming and data work in R (2/3)
+
+- **Data wrangling:** manipulating raw data with `dplyr`
+  - Creating new variables, filtering datasets, arranging, merging, reshaping
+  
+- Pipe syntax: uses `%>%` operator. Example if merging datasets:
+```{r, results='hide', message=FALSE, echo=c(3,4)}
+a <- datasets::airquality
+b <- data.table(Month = 1:12, month.text = month.name)
+df <- merge.data.table(a,b,by = 'Month')
+df <- a %>% 
+  left_join(b,by = 'Month')
+
+```
+
+- Same reasoning with many other `dplyr` data-wrangling functions; e.g. `mutate()`, `filter()`, `select()`, `summarise()`, `arrange()`
+
+- Check wiki <u>[here](https://dplyr.tidyverse.org/)</u>
+
+---
+
+# Basics of programming and data work in R (3/3)
+
+- **Data visualization** in `R` with `ggplot()`. Syntax that maps data $\rightarrow$ geometry $\rightarrow$ visuals
+
+.pull-left[
+```{r, results='hide', message=FALSE}
+library(ggplot2)
+try( # ignore this
+p <- ggplot(data = data) +
+  geom_GEOM(mapping = aes(MAPPINGS)) +
+  THEME()
+)
+# Example
+p <- ggplot(data = airquality) +
+  geom_point(mapping = aes(Wind,Temp, color = Month)) +
+  theme_bw()
+```
+]
+
+.pull-right[
+.center[
+```{r, results='hide', message=FALSE, echo=FALSE,warning=FALSE, out.width="75%"}
+library(ggplot2)
+p <- ggplot(data = airquality) +
+  geom_point(mapping = aes(Wind,Temp, color = Month)) +
+  theme_bw()
+p
+
+```
+]
+]
 
 
 ---
