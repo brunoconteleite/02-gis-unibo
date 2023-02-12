@@ -131,6 +131,23 @@ df.merged %>%
 # There are several data operations (check them
 # out: https://dplyr.tidyverse.org/)
 
+# Saving/exporting data:
+
+# Rdata files: optimized storage (wrt disk space):
+save(df.merged,file = 'merged_dataset.rdata')
+
+# My advise: always export data in csv with 'tab' separator:
+fwrite(x = df.merged,file = 'merged_dataset.csv', sep = '\t')
+
+# if you like Stata files:
+library(haven)
+
+# Importantly: Stata does not allow for '.' or other
+# symbols in the column names. Replace them with '_':
+setnames(df.merged, gsub('\\.', '_',tolower(names(df.merged))))
+# Exporting it:
+write_dta(data = df.merged, path = 'merged_dataset.dta')
+
 # Example 3: plotting data with ggplot2 (part of tidyverse)
 # https://ggplot2.tidyverse.org/index.html
 
@@ -168,14 +185,9 @@ ggplot(df.merged) +
   geom_point(aes(Wind,Temp)) +
   geom_smooth(aes(Wind,Temp),method = 'lm')
 
-# For exercise:
-
-df.ex <- tibble(datasets::CO2)
-
-ggplot(df.ex) +
-  geom_histogram(aes(uptake, fill=Type))
-
-datasets::state.x77
+# For hands-in exercises:
+df.ex.1 <- data.table(datasets::CO2)
+df.ex.2 <- data.table(datasets::state.x77)
 
 
 # ----

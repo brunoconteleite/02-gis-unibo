@@ -1,23 +1,24 @@
-# Spatial Data in Economics: Theory and Tools
- Contents of the course on spatial data (a.k.a. [GIS Tools Laboratory](https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2022/434986))<br>
- [Bruno Conte](https://brunoconteleite.github.io/)<br>
- LMEC Master - Università di Bologna
+# Spatial Data in Economics: Theory and Tools <img style="float: right;width: 15%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Seal_of_the_University_of_Bologna.svg/800px-Seal_of_the_University_of_Bologna.svg.png">
+Contents of the course on spatial data (a.k.a. [GIS Tools Laboratory](https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2022/434986))<br>
+[Bruno Conte](https://brunoconteleite.github.io/) | [b.conte@unibo.it](mailto:b.conte@unibo.it)<br>
+LMEC Master - Università di Bologna
  
 ## Overview
 
 This is a master/Ph.D. course on basic theory and tools for using spatial data in economic research.
 
-All practical applications are taking place in ``R`` and ``RStudio``. Please have both installed in your computer before starting the course.
+All practical applications are taking place in ``R`` and ``RStudio``. **Please have both installed in your computer** before starting the course.
 
 ## Course structure
 
 This is a 15 hours course, divided in five sessions of 3 hours. Its overall structure follows:
 
 * **Session 1:** Introduction to spatial data and data wrangling in R
-  * Basic aspects of spatial data and application illustrations from economic literature. Covers ``R`` basics: ``data.table``, ``tidyverse``, ``ggplot2``
-  * Class slides **[here](https://brunoconteleite.github.io/02-gis-unibo/00_class01.html)**
+  * Basic aspects of `R` (`data.table`, `tidyverse`, `ggplot2`), spatial data, and applications in economic research
   
-  * Hands-in material here
+  * Class slides in **[html](https://brunoconteleite.github.io/02-gis-unibo/00_class01.html)** and **[pdf](https://brunoconteleite.github.io/02-gis-unibo/00_class01.pdf)**
+  
+  * Hands-in material **[here](https://www.dropbox.com/s/gyjmlxnqk24u312/01_class01.R?dl=1)**
 
 * **Session 2:** Vector spatial data (points, lines, and polygons)
   * Loading and manipulating with ``sf``. Basic principles of spatial (re)projections. Basic attribute data operations (e.g. ``filter()``, ``slice()``) with ``data.table`` and data  visualization with ``ggplot2``
