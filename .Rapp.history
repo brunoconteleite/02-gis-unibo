@@ -1,0 +1,177 @@
+q()
+library(tm)
+q()
+a <- 1:10
+model.matrix(a)
+model.matrix(as.factor(a))
+as.factor(a)
+aa <- data.frame(a = 1:10)
+aa
+model.matrix(a,data=aa)
+aa <- data.frame(a = as.factor(1:10))
+aa
+model.matrix(a,data=aa)
+model.matrix(~a,data=aa)
+aa <- data.frame(a = 1:10)
+model.matrix(~a,data=aa)
+model.matrix(~as.factor(a),data=aa)
+q()
+unlink('.RData')
+ls()
+list.files()
+q()
+library(dplyr)
+library(data.table)
+library(ggplot2)
+datasets::airquality
+q()
+2
+a=2
+s
+a
+rm(list=ls())
+getwd()
+setwd('Dropbox/Teaching/02-gis-unibo/')
+getwd()
+2
+a=2
+a
+a='BRUNO''
+a='BRUNO'
+a
+c(2,5,7,8)
+b=c(2,5,7,8)
+b
+1:10
+vector <- c("a", "b", "c", "abc", "def")
+vector
+vector[1]
+vector[1:3]
+vector[c(1,4)]
+rep(vector,2)
+rep(vector,20)
+rep(vector,200)
+data.frame(firstvar = 1:5, secvar = 6:10)
+data.frame(a = 1:10, b = 101:110, words = vector)
+a = 2
+a
+a <- 2
+a
+bruno <- data.frame(a = 1:10, b = 101:110, words = vector)
+bruno
+a = 'bruno'
+a
+class(a)
+class(bruno)
+dataset <- data.frame(a = 1:10, b = 101:110, words = vector)
+dataset
+class(dataset$a)
+class(dataset$words)
+dataset2 <- data.frame(a = 1:10, b = 101:110, words = vector, stringsAsFactors=T)
+dataset2
+class(dataset2$words)
+dataset2$words
+as.numeric('text')
+as.numeric(dataset$words)
+as.numeric(dataset2$words)
+dataset
+dataset$a
+dataset$b
+dataset
+dataset[1,2]
+dataset[1,'b']
+dataset[,'b']
+dataset$b
+plot(dataset$a, dataset$b)
+dataset
+rbind(dataset, c(1,2,'gis'))
+ls()
+rm(a)
+ls()
+rm(list=c('b','vector'))
+ls()
+rm(list=ls())
+ls()
+library(data.table)
+install.packages('bruno')
+year(as.Date('10-01-1959'))
+year(as.Date('1959-01-01'))
+datasets::UKgas
+datasets::state.name
+airquality
+df.airqual <- data.table(airquality)
+df.airqual
+df.months <- data.table(Month = 1:12, month.text = month.name)
+df.months
+merge.data.table(df.airqual,df.months)
+df.merged <- merge.data.table(df.airqual,df.months)
+df.merged
+library(dplyr)
+df.airqual
+df.months
+df.merged <- df.airqual %>% #
+  left_join(df.months)
+df.merged
+c<-function(a,b)
+df.merged %>% #
+  select(month.text, Day, Wind)
+df.merged %>% #
+  filter(Month==5)
+save(df.merged,file = 'merged_dataset.rdata')
+library(ggplot2)
+df.merged
+p <- ggplot(df.merged) +#
+  geom_bar(aes(x = month.text))#
+p
+p <- ggplot(df.merged) +#
+  geom_histogram(aes(x = Temp))#
+p
+p <- ggplot(df.merged) +#
+  geom_histogram(aes(x = Temp))
+p
+p <- ggplot(df.merged) +#
+  geom_histogram(aes(x = Temp, fill = month.text))#
+p
+ggplot(df.merged) + #
+  geom_point(aes(Month,Temp, color = month.text))
+q()
+## ------------------------------------------------------#
+## 01_CLASS01.R - R Script for Lecture 01 (GIS course).#
+#
+# version: 1.0#
+# Author: Bruno Conte Leite @2022-23#
+# b.conte@unibo.it#
+#
+## ------------------------------------------------------#
+# 1. BASICS OF SPATIAL DATA WITH SIMPLE FEATURES: ----#
+#
+library(sf) # simple features' library#
+library(spData) # library of spatial datasets#
+library(dplyr) # for tidyverse operations#
+library(ggplot2)
+gm.multipoints <- st_multipoint(rbind(#
+  c(0.1, 51.5),#
+  c(11.3, 44.4),#
+  c(-3.7, 40.4),#
+  c(2.3, 48.8)#
+))#
+#
+gmc.multipoint <- st_sfc(gm.multipoints,crs = 'EPSG:4326')#
+#
+# 1.3. CREATING SIMPLE FEATURES (SF):#
+#
+# SIMPLE FEATURE:#
+#  - SF COLUMN (GEOMETRY + PROJECTION) +#
+#  - ATTRIBUTE (DATA FRAME)#
+#
+df.attr <- data.frame(#
+  name = c('London', 'Bologna', 'Madrid', 'Paris'),#
+  temperature = c(21,31,29,25),#
+  language = c('English', 'Italian', 'Spanish', 'French')#
+)#
+#
+gmsf.multipoint <- st_sf(df.attr,geometry = gmc.multipoint)
+plot(gmsf.multipoint[,'name']) # select column
+ggplot(gmsf.multipoint) +#
+  geom_sf(aes(color=language))
+q()
