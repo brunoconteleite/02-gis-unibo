@@ -23,11 +23,11 @@ This is a 15 hours course, divided in five sessions of 3 hours. Its overall stru
 * **Session 2:** Vector spatial data (points, lines, and polygons)
   * Loading and manipulating with ``sf``. Basic principles of spatial (re)projections. Basic attribute data operations (e.g. ``filter()``, ``slice()``) with ``data.table`` and data  visualization with ``ggplot2``
   
-  * *Assignment:* replicating maps spatial summary statistics from academic papers. Instructions here
+  * *Assignment:* replicating maps from academic papers. Instructions **[here](https://brunoconteleite.github.io/02-gis-unibo/00_class02.html#24)**
   
-  * Class slides here
+  * Class slides in **[html](https://brunoconteleite.github.io/02-gis-unibo/00_class02.html)** and **[pdf](https://brunoconteleite.github.io/02-gis-unibo/00_class02.pdf)**
   
-  * Hands-in material here
+  * Hands-in material **[here](https://www.dropbox.com/s/cbytt7ehgkrn105/01_class02.R?dl=1)**
 
 * **Session 3:** Spatial data operations with vector data
   * Spatial Subsetting and topological relations (e.g. ``st_intersects()``, ``st_overlaps()``, ``st_touches()``), spatial joining and aggregation (e.g. ``st_join()``, ``aggregate()``), and calculating distances (and spatial networks) with ``gdistance``, ``rgeos``, and ``igraph``
