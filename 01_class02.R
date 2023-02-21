@@ -237,9 +237,133 @@ sf.andorra <- st_read('../../../Downloads/gadm41_AND_1.kml')
 
 # ----
 
+# 3. SF ATTRBUTE OPERATIONS ----
+
+# Let us use the world dataset for that:
+sf.world <- world
+
+# 3.1. Basic oprations:
+
+# Slicing/selecting:
+
+sf.world[1:3,] # basic R 'vector' syntax
+sf.world[,1:3]
+
+# Using dplyr syntax:
+sf.world %>% 
+  slice(1:3)
+
+sf.world %>% 
+  select(1:3) # or by names, as we already did
+
+# Filtering: countries with population>100 million
+sf.world %>% 
+  filter(pop>100000000) # select variables
+
+# 3.2. Aggregating
+sf.world.agg <- world %>% 
+  group_by(continent) %>% 
+  summarize(pop = sum(pop))
+
+# Likely error: how to solve it?
+# https://stackoverflow.com/questions/68478179/how-to-resolve-spherical-geometry-failures-when-joining-spatial-data
+sf_use_s2(F)
+# be careful with this: it is happening because this
+# geometry has low precision! Not reccomended!
+
+sf.world.agg <- sf.world %>% 
+  group_by(continent) %>% 
+  summarize(pop = sum(pop))
+# Watch out for minnsing values (NA)!!!
+
+sf.world.agg <- sf.world %>% 
+  group_by(continent) %>% 
+  summarize(pop = sum(pop,na.rm=T))
+
+ggplot(sf.world.agg) +
+  geom_sf(aes(fill=pop))
+
+# Using factors inside aesthetics
+# (transform continuous scale into
+# discrete):
+
+ggplot(sf.world.agg) +
+  geom_sf(aes(fill=as.factor(pop)))
+
+# Multiple aggregation:
+
+sf.world.agg <- sf.world %>% 
+  group_by(continent) %>% 
+  summarise(pop = sum(pop,na.rm = T), area = sum(area_km2,na.rm = T))
+
+ggplot(sf.world.agg) +
+  geom_sf(aes(fill=as.factor(area)))
+
+rm(sf.world.agg)
+
+# 3.3. Vector merging (joining):
+
+# Suppose we have an additional dataset
+df.coffe <- coffee_data
+df.coffe
+
+# Merging (joining it) to the sf:
+
+sf.world.merged <-sf.world %>% 
+  left_join(df.coffe)
+# too many variables from sf.world
+
+sf.world %>% 
+  select(name_long,continent) %>% 
+  left_join(df.coffe)
+
+ggplot(sf.world.merged) +
+  geom_sf(aes(fill=coffee_production_2017))
+
+# What if the "merging variables" between datasets
+# do not have the same names?
+
+# Here I artificially change names in the coffe data:
+df.coffe <- df.coffe %>% 
+  rename(country.name = name_long)
+
+# Try to merge:
+sf.world %>% 
+  left_join(df.coffe)
+
+# Telling which variables link the two datasets:
+sf.world %>% 
+  left_join(df.coffe,by = c(name_long =  'country.name'))
+
+# Generating varaibles (mutating):
+
+# Coffe per capita:
+sf.world.merged <- sf.world.merged %>% 
+  mutate(coffee_capita = coffee_production_2016/pop)
+
+ggplot(sf.world.merged) +
+  geom_sf(aes(fill=coffee_capita))
+
+# You can calculate the new variable directly
+# inside the aes(). Example with coffee/area
+
+ggplot(sf.world.merged) +
+  geom_sf(aes(fill=(coffee_production_2016/area_km2)))
 
 
+# ----
 
+# 4. HANDS-IN EXERCISE ----
+
+# 4.1. Creating and plotting simple features
+
+# 4.2. Downloading external data and plotting
+# it (airports by size)
+
+# 4.3. Vector attribute operations: merging
+# and aggregating
+
+# ----
 
 
 
