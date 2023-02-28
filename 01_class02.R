@@ -1,5 +1,5 @@
 ## ------------------------------------------------------
-## 01_CLASS01.R - R Script for Lecture 01 (GIS course).
+## 01_CLASS02.R - R Script for Lecture 02 (GIS course).
 
 # version: 1.0
 # Author: Bruno Conte Leite @2022-23
@@ -237,7 +237,7 @@ sf.andorra <- st_read('../../../Downloads/gadm41_AND_1.kml')
 
 # ----
 
-# 3. SF ATTRBUTE OPERATIONS ----
+# 3. SF ATTRIBUTE OPERATIONS ----
 
 # Let us use the world dataset for that:
 sf.world <- world

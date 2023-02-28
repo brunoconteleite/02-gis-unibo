@@ -32,11 +32,11 @@ This is a 15 hours course, divided in five sessions of 3 hours. Its overall stru
 * **Session 3:** Spatial data operations with vector data
   * Spatial Subsetting and topological relations (e.g. ``st_intersects()``, ``st_overlaps()``, ``st_touches()``), spatial joining and aggregation (e.g. ``st_join()``, ``aggregate()``), and calculating distances (and spatial networks) with ``gdistance``, ``rgeos``, and ``igraph``
   
-  * *Assignment:* reproducing operations with proposed data and replicating results from academic papers. Instructions here
+  * ~~*Assignment:* reproducing operations with proposed data and replicating results from academic papers. Instructions here~~
   
-  * Class slides here
+  * Class slides **[html](https://brunoconteleite.github.io/02-gis-unibo/00_class03.html)** and **[pdf](https://brunoconteleite.github.io/02-gis-unibo/00_class03.pdf)**
   
-  * Hands-in material here
+  * Hands-in material **[here](https://www.dropbox.com/s/envahn55fnyot9w/01_class03.R?dl=1)**
   
 * **Session 4:** Spatial geometry operations and miscelania
   * Basic operations with vector data (e.g. centroids, shift, rotate, buffering)

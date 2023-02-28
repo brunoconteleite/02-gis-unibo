@@ -209,6 +209,8 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
 .dataTables_wrapper .dataTables_paginate .paginate_button {
   color: var(--text-color) !important;
 }
+.large { font-size: 130% }
+.small { font-size: 70% }
 
 /* Horizontal alignment of code blocks */
 .remark-slide-content.left pre,
