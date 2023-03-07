@@ -74,7 +74,16 @@ ggplot() +
   geom_sf(data = sf.river.buffer, aes(fill=name), alpha=.5) +
   theme_bw()
 
-# 1.4. Affine transformations: shifting, scaling, 
+# 1.4. Type transformations (casting)
+
+sf.river <- seine
+sf.cast <- st_cast(x = sf.river, to = 'MULTIPOINT')
+
+ggplot() +
+  geom_sf(data = sf.river) +
+  geom_sf(data = sf.cast, aes(color = name),shape = 1)
+
+# 1.5. Affine transformations: shifting, scaling, 
 # rotating; see Chapter 5.2.4 of
 # https://r.geocompx.org/geometry-operations.html
 
@@ -139,81 +148,21 @@ ggplot() +
   geom_sf(data = sf.union, aes(fill='Union'),alpha=.95) +
   theme_bw()
 
-# ----
+# 2.3. Distances:
 
-# 3. HANDS-IN EXERCISE ----
+# Use st_distance() - calculates MINIMUM 
+# DISTANCES.
 
-# 3.1. Merging and aggregating the
-# world's data (attribute operations)
+sf.river <- seine
+sf.centr <- st_centroid(sf.river)
 
-sf.world <- world %>% filter(!is.na(iso_a2))
-df.wb <- worldbank_df %>% filter(!is.na(iso_a2))
-
-sf.merged <- sf.world %>% 
-  left_join(df.wb) %>% 
-  filter(continent %in% c('North America', 'South America')) %>% 
-  group_by(subregion) %>% 
-  summarise(total_urban = sum(urban_pop,na.rm=T), total_pop = sum(pop,na.rm=T)) %>% 
-  mutate(urban_rate = total_urban/total_pop)
-
-p<-ggplot(sf.merged) +
-  geom_sf(aes(fill=urban_rate)) +
-  scale_fill_distiller(palette = 'Spectral') +
-  coord_sf(crs = "+proj=laea +x_0=0 +y_0=0 +lon_0=-74 +lat_0=40") +
-  theme_bw()
-p
-
-# 3.2. Spatial operations:
-
-sf.great.london <- lnd
-sf.bikes <- cycle_hire
-
-# Watch out with names:
-names(sf.great.london)
-names(sf.bikes)
-
-sf.great.london <- sf.great.london %>% 
-  rename(name_london = NAME)
-sf.bikes <- sf.bikes %>% 
-  rename(name_bike = name)
-
-# Spatial filtering:
-sf.filtered <- sf.great.london %>% 
-  st_filter(sf.bikes)
-
-ggplot() +
-  geom_sf(data = sf.filtered) +
-  geom_sf(data = sf.bikes)
-
-# Spatial join:
-
-sf.bikes.join <- sf.bikes %>% 
-  st_join(sf.great.london)
-
-ggplot() +
-  geom_sf(data = sf.filtered) +
-  geom_sf(data = sf.bikes.join, aes(color = name_london))
-
-sf.bikes.join <- sf.bikes %>% 
-  st_join(sf.great.london)
-
-# Spatial join + aggregation:
-
-sf.glnd.join <- sf.great.london %>% 
-  st_join(sf.bikes) %>% 
-  group_by(name_london) %>% 
-  summarize(
-    total_bikes = sum(nbikes,na.rm = T),
-    total_empty = sum(nempty,na.rm = T)
-    )
-
-ggplot() +
-  geom_sf(data = sf.glnd.join, aes(fill=total_bikes)) +
-  scale_fill_distiller(name = 'Total\nbikes',direction = 1)
-
-
+st_distance(sf.river)
+st_distance(sf.centr)
+st_distance(sf.centr,sf.river)
+st_distance(sf.centr,sf.river,by_element = T)
 
 # ----
+
 
 
 

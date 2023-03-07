@@ -45,9 +45,11 @@ This is a 15 hours course, divided in five sessions of 3 hours. Its overall stru
   
   * *Class follow-up:* feedback on course pace, reinforcing concepts, etc.
   
-  * Class slides here
+  * *Assignment:* reproducing operations with proposed data and replicating results from academic papers. Instructions **[here](https://brunoconteleite.github.io/02-gis-unibo/00_class04.html#21)**
   
-  * Hands-in material here
+  * Class slides **[html](https://brunoconteleite.github.io/02-gis-unibo/00_class04.html)** and **[pdf](https://brunoconteleite.github.io/02-gis-unibo/00_class04.pdf)**
+  
+  * Hands-in material **[here](https://www.dropbox.com/s/ijcy1f3b381mcug/01_class04.R?dl=1)**
 
 * **Session 5:** Raster data
   * Loading and manipulating raster data with ``terra``. Basic raster operations (e.g. ``resample``, ``stack``, ``brick``, ``crop``)
