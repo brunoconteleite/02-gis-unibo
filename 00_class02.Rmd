@@ -186,6 +186,7 @@ There is almost **infinite** availability of spatial data in the internet. Here 
 - <u>[DHS surveys:](https://dhsprogram.com/data/)</u> geocoded surveys
 - <u>[Geographic names:](https://geographic.org/geographic_names/index.html)</u> to geocode localities
 - <u>[Long-lat:](https://www.latlong.net/convert-address-to-lat-long.html)</u> API to geocode by names
+- <u>[NOAA VIIS:](https://www.ngdc.noaa.gov/eog/dmsp/downloadV4composites.html)</u> Satellite Nighttime lights
 ]
   
 ---

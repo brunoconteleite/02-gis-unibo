@@ -1,4 +1,4 @@
-# Spatial Data in Economics: Theory and Tools <img style="float: right;width: 15%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Seal_of_the_University_of_Bologna.svg/800px-Seal_of_the_University_of_Bologna.svg.png">
+# Spatial Data in Economics: Theory and Tools <img style="float: right;width: 15%" src="figs/unibo_logo1.png">
 Contents of the course on spatial data (a.k.a. [GIS Tools Laboratory](https://www.unibo.it/en/teaching/course-unit-catalogue/course-unit/2022/434986))<br>
 [Bruno Conte](https://brunoconteleite.github.io/) | [b.conte@unibo.it](mailto:b.conte@unibo.it)<br>
 LMEC Master - Università di Bologna
@@ -52,18 +52,19 @@ This is a 15 hours course, divided in five sessions of 3 hours. Its overall stru
   * Hands-in material **[here](https://www.dropbox.com/s/ijcy1f3b381mcug/01_class04.R?dl=1)**
 
 * **Session 5:** Raster data
-  * Loading and manipulating raster data with ``terra``. Basic raster operations (e.g. ``resample``, ``stack``, ``brick``, ``crop``)
+  * Loading and manipulating raster data with ``terra``. Basic raster operations (e.g. ``crop``, ``vectorize``, and ``rasterize``)
   
   * Managing curse of dimensionality and large disk and memory needs for dealing with raster data
   
   * Raster-vector operations with ``terra`` and ``exactextractr`` (e.g. extracting, rasterizing, vectorizing, zonal statistics)
-  * *Conclusion:* follow-up on important concepts and (potentially) holding short presentations of research projects
   
-  * *Assignment:* replication of results and spatial statistics from academic papers. Instructions here
+  * Distance over rasters: using rasters as frictions surfaces to calculate optimal paths with ``gdistance``
   
-  * Class slides here
+  * *Assignment:* replication of results and spatial statistics. Instructions **[here](https://brunoconteleite.github.io/02-gis-unibo/00_class05.html#15)**
   
-  * Hands-in material here
+  * Class slides **[html](https://brunoconteleite.github.io/02-gis-unibo/00_class05.html)** and **[pdf](https://brunoconteleite.github.io/02-gis-unibo/00_class05.pdf)**
+  
+  * Hands-in material **[here](https://www.dropbox.com/s/otjoukms3eiexga/01_class05.R?dl=1)**
 
 ## References
 

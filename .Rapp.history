@@ -175,3 +175,11 @@ plot(gmsf.multipoint[,'name']) # select column
 ggplot(gmsf.multipoint) +#
   geom_sf(aes(color=language))
 q()
+library(sf) # simple features' library#
+library(spData) # library of spatial datasets#
+library(tidyverse) # dplyr, ggplot, ...#
+library(terra)
+r.nightlights <- rast('../../Research/Data/gis data/NL NOAA Version 4 DMSP-OLS/F101992.v4/F101992.v4b_web.stable_lights.avg_vis.tif')
+r.nightlights
+rm(list=ls())
+q()
