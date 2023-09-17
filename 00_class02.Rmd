@@ -3,7 +3,7 @@ title: "Lecture 02"
 subtitle: "Theory and Tools (a.k.a. GIS Tools Lab.)"
 author: "Bruno Conte"
 institute: "Università di Bologna"
-date: "21/Feb/2023"
+date: "21/Sep/2023"
 # date: "2016/12/12 (updated: `r Sys.Date()`)"
 # bibliography: references.bib
 output:
@@ -55,26 +55,26 @@ class: inverse, center, title-slide, middle
 
 ### <img src="figs/unibo_logo_white.png" style="width: 15%" /><br><br>Bruno Conte
 
-### 21/Feb/2023
+### 21/Sep/2023
 
 ---
 
 # Spatial data in economics: schedule
 
-1. ~~Introduction to (spatial) data and programming in `R`~~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [14.Feb.2023]
+1. ~~Introduction to (spatial) data and programming in `R`~~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [18.Sep.2023]
 
-2. Spatial data basics: vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [21.Feb.2023]
+2. Spatial data basics: vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [21.Sep.2023]
     - Spatial data types (vector and raster) and data files
     - Basics of **vector data**: generating, wrangling, visualizing, exporting
     - Working with external files: loading, processing, exporting
 
-3. Basic operations with vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [28.Feb.2023]
+3. Basic operations with vector data <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [25.Sep.2023]
 
-4. Geometry operations and miscelanea <span style="color: rgb(213,94,0)">+ follow-up</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [07.Mar.2023]
+4. Geometry operations and miscelanea <span style="color: rgb(213,94,0)">+ follow-up</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [28.Sep.2023]
 
-5. Raster data and operations <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [14.Mar.2023]<br> <br>
+5. Raster data and operations <span style="color: rgb(0,114,178)">+ assignment</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [02.Oct.2023]<br> <br>
 
-6. <span style="color: rgb(0,158,115)">Take-home exam</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [12.Apr.2023]
+6. <span style="color: rgb(0,158,115)">Take-home exam</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [03.Nov.2023]
 
 ---
 
@@ -470,7 +470,7 @@ count: false
 - **Delivery:** one document (.pdf,.html) featuring your code and the result of it
   - Hint: use R markdown to create a code notebook!
   
-- **Deadline:** until next class (28 Februrary 2023 5:00 pm)
+- **Deadline:** until next class (25 September 2023 8:00 am)
 
 ---
 

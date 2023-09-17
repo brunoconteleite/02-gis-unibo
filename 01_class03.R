@@ -2,7 +2,7 @@
 ## 01_CLASS03.R - R Script for Lecture 03 (GIS course).
 
 # version: 1.0
-# Author: Bruno Conte Leite @2022-23
+# Author: Bruno Conte Leite @2023-24
 # b.conte@unibo.it
 
 ## ------------------------------------------------------

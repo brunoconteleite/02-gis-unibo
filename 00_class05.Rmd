@@ -3,7 +3,7 @@ title: "Lecture 05"
 subtitle: "Theory and Tools (a.k.a. GIS Tools Lab.)"
 author: "Bruno Conte"
 institute: "Università di Bologna"
-date: "14/Mar/2023"
+date: "02/Oct/2023"
 # date: "2016/12/12 (updated: `r Sys.Date()`)"
 # bibliography: references.bib
 output:
@@ -55,26 +55,26 @@ class: inverse, center, title-slide, middle
 
 ### <img src="figs/unibo_logo_white.png" style="width: 15%" /><br><br>Bruno Conte
 
-### 14/Mar/2023
+### 02/Oct/2023
 
 ---
 
 # Spatial data in economics: schedule
 
-1. ~~Introduction to (spatial) data and programming in `R`~~ [14.Feb.2023]
+1. ~~Introduction to (spatial) data and programming in `R`~~ [18.Sep.2023]
 
-2. ~~Spatial data basics: vector data <span style="color: rgb(0,114,178)">+ assignment</span>~~ [21.Feb.2023]
+2. ~~Spatial data basics: vector data <span style="color: rgb(0,114,178)">+ assignment</span>~~ [21.Sep.2023]
 
-3. ~~Basic operations with vector data <span style="color: rgb(0,114,178)">+ assignment</span>~~ [28.Feb.2023]
+3. ~~Basic operations with vector data <span style="color: rgb(0,114,178)">+ assignment</span>~~ [25.Sep.2023]
 
-4. ~~Geometry operations and miscelanea <span style="color: rgb(213,94,0)">+ follow-up</span> <span style="color: rgb(0,114,178)">+ assignment</span>~~ [07.Mar.2023]
+4. ~~Geometry operations and miscelanea <span style="color: rgb(213,94,0)">+ follow-up</span> <span style="color: rgb(0,114,178)">+ assignment</span>~~ [28.Sep.2023]
 
-5. Raster data and operations <span style="color: rgb(0,114,178)">+ assignment</span> [14.Mar.2023]
+5. Raster data and operations <span style="color: rgb(0,114,178)">+ assignment</span> [02.Oct.2023]
     - Raster basics: creating and loading rasters with `terra`
     - Operations: unary and vector-raster tools
     - <span style="color: rgb(213,94,0)">Students' feedback survey</span><br> <br>
 
-6. <span style="color: rgb(0,158,115)">Take-home exam</span> [12.Apr.2023]
+6. <span style="color: rgb(0,158,115)">Take-home exam</span> [03.Nov.2023]
 
 ---
 

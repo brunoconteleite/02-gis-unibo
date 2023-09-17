@@ -1,0 +1,218 @@
+# 4. HANDS-IN ----
+
+# 4.1. Vector cropping and vectorizing:
+
+# Italy by 1x1 gridcells:
+sf.raster <- rast() %>% 
+  crop(world %>% filter(name_long=='Italy')) %>% 
+  as.polygons() %>% 
+  st_as_sf() %>% 
+  st_filter(world %>% filter(name_long=='Italy'))
+
+# 4.2. SPEI index by year USA:
+
+r.spei <- rast('../../../Dropbox/Research/Data/gis data/spei/spei01.nc')
+
+sf.usa <- us_states %>% st_transform('EPSG:4326')
+sf.usa$spei_2015 <- exact_extract(r.spei[[1380]],sf.usa,'mean')
+
+# 4.3. Distance between main towns in Spain:
+
+# Populated places in Spain:
+sf.points <- st_read('../../../Downloads/ne_10m_populated_places/', 'ne_10m_populated_places')
+
+# Filtering in Spain:
+sf.points <- sf.points %>% 
+  st_filter(world %>% filter(name_long=='Spain')) %>% 
+  dplyr::select(NAME,POP_MAX) %>% 
+  arrange(-POP_MAX) %>% 
+  slice(1:10)
+
+# Elevation raster:
+sf.raster <- rast('../../../Downloads/MSR_50M/MSR_50M.tif')
+# Cropping it:
+sf.raster <- sf.raster %>% crop(world %>% filter(name_long=='Spain'))
+
+# Transition matrix:
+tr.matrix <- transition(
+  x = raster::raster(sf.raster), # why error? needs a raster() object!
+  # transitionFunction = function(x) 1/mean(x),
+  transitionFunction = mean,
+  directions = 8
+)
+
+# Calculating distances:
+
+dist.mat.riv <- matrix(
+  0,
+  nrow = nrow(sf.points),
+  ncol = nrow(sf.points)
+)
+
+for (i in 1:nrow(sf.points)) {
+  
+  for (j in 1:nrow(sf.points)) {
+    
+    # Creating the sp points:
+    sp.point.1 <- as_Spatial(sf.points[i,])
+    sp.point.2 <- as_Spatial(sf.points[j,])
+    
+    # Caluculating path:
+    sp.distance <- shortestPath(
+      x = tr.matrix,
+      origin = sp.point.1,
+      goal = sp.point.2,
+      output = "SpatialLines"
+    )
+    
+    # Extracting length:
+    sf.distance <- st_as_sf(sp.distance)
+    
+    dist.mat.riv[i,j] <- st_length(sf.distance)/1e3 # in km
+    
+  }
+  
+}
+
+df.distances <- data.frame(dist.mat.riv) %>% 
+  gather() # reshaping it
+
+df.distances <- df.distances %>% 
+  rename(orig = key, distance = value) %>% 
+  mutate(dest = rep(paste0('X',1:10),10)) %>% 
+  left_join(data.frame(orig = paste0('X',1:10),origin = sf.points$NAME)) %>% 
+  left_join(data.frame(dest = paste0('X',1:10),destination = sf.points$NAME)) %>% 
+  dplyr::select(origin,destination,distance)
+
+# ----
+
+# 5. ASSIGNMENT ----
+
+# 5.1. Spei index USA:
+
+r.spei <- rast('../../../Dropbox/Research/Data/gis data/spei/spei01.nc')
+
+sf.usa <- us_states %>% 
+  st_transform('EPSG:4326') %>% 
+  group_by(REGION) %>%
+  summarise()
+
+for (i in 1:50) {
+  sf.usa$a <- exact_extract(
+    r.spei[[1380-((i-1)*12)]],
+    sf.usa,
+    'mean',
+    progress=F
+  )
+  sf.usa <- sf.usa %>% 
+    rename(!!paste0('spei_',2016-i) := a)
+}
+
+df.spei <- st_drop_geometry(sf.usa) %>% 
+  gather(year,spei,spei_2015:spei_1966) %>% 
+  mutate(year = as.numeric(gsub('spei_', '', year)))
+
+ggplot(df.spei) +
+  geom_line(aes(year,spei,color = REGION)) +
+  theme_bw()
+
+ggplot(df.spei) +
+  geom_line(aes(year,spei,color = REGION)) +
+  geom_smooth(aes(year,spei),alpha=.5) +
+  theme_bw()
+
+# 5.2. Bilateral distances in Spain:
+
+sf.roads <- st_read('../../../Downloads/ne_10m_roads/', 'ne_10m_roads')
+
+# filtering in Spain:
+sf.roads <- sf.roads %>% 
+  st_filter(world %>% filter(name_long=='Spain'))
+
+# Rasterizing it:
+r.template <- rast() %>% 
+  crop(world %>% filter(name_long=='Spain'))
+res(r.template) <- .1
+
+r.roads <- rasterize(vect(sf.roads),r.template)
+# replacing values:
+vv <- values(r.roads)
+vv[is.nan(vv)] <- 100
+values(r.roads) <- vv
+rm(vv)
+
+# Transition matrix:
+tr.matrix <- transition(
+  x = raster::raster(r.roads), # why error? needs a raster() object!
+  transitionFunction = function(x) 1/mean(x),
+  # transitionFunction = mean,
+  directions = 8
+)
+
+# Populated places in Spain:
+sf.points <- st_read('../../../Downloads/ne_10m_populated_places/', 'ne_10m_populated_places')
+
+# Filtering in Spain:
+sf.points <- sf.points %>% 
+  st_filter(world %>% filter(name_long=='Spain')) %>% 
+  dplyr::select(NAME,POP_MAX) %>% 
+  arrange(-POP_MAX) %>% 
+  slice(1:10)
+
+# Calculating distances:
+
+dist.mat <- matrix(
+  0,
+  nrow = nrow(sf.points),
+  ncol = nrow(sf.points)
+)
+
+for (i in 1:nrow(sf.points)) {
+  
+  for (j in 1:nrow(sf.points)) {
+    
+    # Printing it:
+    print(paste('Calculating: ', sf.points[i,]$NAME, ' from ', sf.points[j,]$NAME))
+    
+    # Creating the sp points:
+    sp.point.1 <- as_Spatial(sf.points[i,])
+    sp.point.2 <- as_Spatial(sf.points[j,])
+    
+    # Caluculating path:
+    sp.distance <- gdistance::shortestPath(
+      x = tr.matrix,
+      origin = sp.point.1,
+      goal = sp.point.2,
+      output = "SpatialLines"
+    )
+    
+    # Extracting length:
+    sf.distance <- st_as_sf(sp.distance)
+    
+    dist.mat[i,j] <- st_length(sf.distance)/1e3 # in km
+    
+  }
+  
+}
+
+df.distances <- data.frame(dist.mat) %>% 
+  gather() # reshaping it
+
+df.distances <- df.distances %>% 
+  rename(orig = key, distance = value) %>% 
+  mutate(dest = rep(paste0('X',1:10),10)) %>% 
+  left_join(data.frame(orig = paste0('X',1:10),origin = sf.points$NAME)) %>% 
+  left_join(data.frame(dest = paste0('X',1:10),destination = sf.points$NAME)) %>% 
+  dplyr::select(origin,destination,distance)
+
+ggplot(df.distances %>% filter(origin %in% c('Madrid', 'Vigo'))) +
+  geom_density(aes(distance, fill=origin,color=origin),alpha=.5) +
+  theme_bw()
+
+ggplot() +
+  geom_sf(data = world %>% filter(name_long=='Spain')) +
+  geom_sf(data = sf.roads %>% filter(featurecla=='Road')) +
+  geom_sf(data = sf.points %>% filter(NAME %in% c('Madrid', 'Vigo')), aes(color = NAME, shape = NAME),size=2) +
+  theme_bw()
+
+# ----
